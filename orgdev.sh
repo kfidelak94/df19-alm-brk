@@ -30,27 +30,27 @@ git checkout -b uat > /dev/null 2>&1
 git push origin uat > /dev/null 2>&1
 # Do development in Sandbox and pull changes and push them to source control repo
 dprintf "sfdx force:source:pull -u $devsb" 
-echo '*******Now we will make a change in the Sandbox'
+dprintf "###### Now we will make a change in the Sandbox ######"
 dprintf "sfdx force:org:open -u $devsb"
 dprintf "sfdx force:source:pull -u $devsb"
-echo '*******Now we will create and checkout a new feature branch for our changes'
+dprintf "###### Now we will create and checkout a new feature branch for our changes ######"
 dprintf "git branch feature1"
 dprintf "git checkout feature1"
-echo '*******And add and commit the changes to the feature branch'
+dprintf "###### And add and commit the changes to the feature branch ######"
 dprintf "git add ."
 dprintf "git commit -m 'My first feature commit'"
-echo '*******Now we will push the changes to the remote repository feature branch'
+dprintf "###### Now we will push the changes to the remote repository feature branch ######"
 dprintf "git push -u origin feature1"
-echo '*******Now we will create a Pull Request'
+dprintf "###### Now we will create a Pull Request ######"
 dprintf "hub pull-request -b uat -h feature1"
-dprintf "echo '*******Now we will go into GitHub and review and merge the Pull Request'"
-echo '*******Now we will pull the changes from the repo to deploy them to UAT'
+dprintf "###### Now we will go into GitHub and review and merge the Pull Request ######"
+dprintf "###### Now we will pull the changes from the repo to deploy them to UAT ######"
 dprintf "mkdir ../../dfdemo_working"
 dprintf "cd ../../dfdemo_working"
 dprintf "git clone https://github.com/$gitusername/dfdemo"
 dprintf "cd dfdemo/myproject"
 dprintf "git pull origin uat"
 dprintf "sfdx force:source:deploy -p force-app/ -u $uat -w 10"
-echo '*******Now we will go into the UAT sandbox to do final verification'
+dprintf "###### Now we will go into the UAT sandbox to do final verification ######"
 dprintf "sfdx force:org:open -u $uat"
 dprintf "hub pull-request -b master -h uat"
