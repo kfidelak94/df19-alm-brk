@@ -5,6 +5,7 @@ sbx=DevSB5
 # Cleanup
 rm -rf ./dreamhouse-lwc
 node ./testing.js
+sfdx force:package:uninstall -p 04t6g0000012ngIAAQ -u $sbx -w 10 > /dev/null 2>&1 &
 
 # Demo script
 dprintf "git clone https://github.com/dreamhouseapp/dreamhouse-lwc"
@@ -26,5 +27,4 @@ dprintf "sfdx force:package:version:create -p DH19pkg -x -w 10"
 dprintf "sfdx force:package:install --package 04t6g0000012ngIAAQ -w 10 -u $sbx -r"
 
 #demo cleanup
-sfdx force:package:uninstall -p 04t6g0000012ngIAAQ -u $sbx -w 10
 sfdx force:package:update -p "DH19pkg" -n "pkg`date +"%s"`" > /dev/null
