@@ -1,5 +1,6 @@
 # Import auto pilot
 source ./autopilot.sh
+sbx=DevSB5
 
 # Cleanup
 rm -rf ./dreamhouse-lwc
@@ -16,10 +17,14 @@ dprintf "sfdx force:data:tree:import -p data/sample-data.json -u mydhdev"
 echo '*******Now we will open the scratch org to make a change'
 dprintf "sfdx force:org:open -u mydhdev"
 dprintf "sfdx force:source:pull -u mydhdev"
-dprintf "sfdx force:package:create -n dhpkg -t Unlocked -r force-app/"
-dprintf "sfdx force:package:version:create -p dhpkg -x -w 10"
-dprintf "sfdx force:org:open -u SBtest2"
-dprintf "sfdx force:package:install --package 04t3s000003OnVxAAK -u SBtest2 -r
+dprintf "sfdx force:package:create -n DH19pkg -t Unlocked -r force-app/"
+dprintf "sfdx force:package:version:create -p DH19pkg -x -w 10"
+dprintf "sfdx force:org:open -u $sbx"
+dprintf "sfdx force:package:install --package 04t6g0000012nDJAAY -w 10 -u $sbx -r"
 echo '*******Now we will make another change to the code, in VS Code
-dprintf "sfdx force:package:version:create -p dhpkg -x -w 10"
-sfdx force:package:install --package XXXXXXX -u SBtest2 -r
+dprintf "sfdx force:package:version:create -p DH19pkg -x -w 10"
+dprintf "sfdx force:package:install --package 04t6g0000012ngIAAQ -w 10 -u $sbx -r"
+
+#demo cleanup
+sfdx force:package:uninstall -p 04t6g0000012ngIAAQ -u $sbx -w 10
+sfdx force:package:update -p "DH19pkg" -n "pkg`date +"%s"`" > /dev/null
