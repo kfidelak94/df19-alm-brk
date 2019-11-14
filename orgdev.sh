@@ -10,7 +10,7 @@ source ./autopilot.sh
 rm -rf ./dfdemo
 rm -rf ./dfdemo_working
 hub delete -y $gitusername/dfdemo > /dev/null 2>&1
-node ./testing.js
+#node ./testing.js
 
 # Demo script
 # Create project and initialize Git and create remote repository
