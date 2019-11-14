@@ -16,14 +16,15 @@ hub delete -y $gitusername/dfdemo > /dev/null 2>&1
 # Create project and initialize Git and create remote repository
 dprintf "mkdir dfdemo"
 dprintf "cd dfdemo"
-dprintf "git init"
+git init > /dev/null 2>&1
 dprintf "sfdx force:project:create -n myproject"
 dprintf "cd myproject"
-dprintf "git add ."
-dprintf "git commit -m 'commit project'"
-dprintf "git remote add origin https://github.com/$gitusername/dfdemo.git"
-dprintf "hub create"
-dprintf "git push -u origin master"
+dprintf "code ."
+git add . > /dev/null 2>&1
+git commit -m 'commit project' > /dev/null 2>&1
+git remote add origin https://github.com/$gitusername/dfdemo.git > /dev/null 2>&1
+hub create > /dev/null 2>&1
+git push -u origin master > /dev/null 2>&1
 git push origin -d feature1 > /dev/null 2>&1
 git push origin -d uat > /dev/null 2>&1
 git checkout -b uat > /dev/null 2>&1
