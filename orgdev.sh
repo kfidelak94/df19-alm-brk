@@ -1,7 +1,7 @@
 # assign variables
 gitusername=dfalmteam
-devsb=DevSB
-uat=UAT
+devsb=DevSB1
+uat=UATFull
 
 # Import auto pilot
 source ./autopilot.sh
